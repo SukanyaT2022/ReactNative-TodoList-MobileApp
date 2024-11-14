@@ -24,7 +24,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Todo from './src/component/todo';
+import Todo from './src/component/Todo';
+import WorkFlatlist from './src/component/WorkFlatlist';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -41,8 +42,10 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={{flex:1}}>
-  <Todo/>
+  {/* <Todo/> */}
+  <WorkFlatlist/>
     </SafeAreaView>
+  
   );
 }
 
