@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+// import { styles } from './WorksFlatList_styles';
 
 const Work2Flatelist = () => {
   const [textInput, setTextInput] = useState('');
@@ -24,81 +25,31 @@ const Work2Flatelist = () => {
       <Text style={styles.h1}>What will you do today? </Text>
 
       {/* start flatlist map section */}
-      {/* <FlatList
-          data={allItems}
-          keyExtractor={item => item}
-          renderItem={({item}) => (
-
-            // main mapbox
-<View style={styles.messageboxWrapper}>
-    <View style={styles.leftsquareBox}></View>
-<Text style={styles.textmiddle}>message</Text>
-<View style={styles.circleDotright}></View>
-</View>
-          )}
-          /> */}
-
-      {/* end flat list map */}
 
       <FlatList
+      style={{width:'100%'}}
+      contentContainerStyle={{width:'100%'}}
         data={allItems}
         keyExtractor={item => item}
         renderItem={({item}) => (
-          // wrapper all squarebox text and circle
-          <View
-            style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-evenly',
-              backgroundColor: 'white',
-              borderRadius: 15,
-              marginVertical: 15,
-            }}>
-            {/* wrapper square box on the left */}
+          // main mapbox
 
-            {/* square box inside */}
-            <View
-              style={{
-                backgroundColor: 'green',
-                borderRadius: '30%',
-                height: 20,
-                width: 20,
-              }}>
-              Y
+          <View style={{flexDirection:'row', justifyContent:'space-between', marginTop: 10, alignItems:'center', marginHorizontal:20, backgroundColor:'white', padding:12, borderRadius:8}}>
+            <View style={{flexDirection:'row', gap:15, alignItems:'center'}}>
+              <View style={{height:20, aspectRatio:1, borderWidth:1, borderColor:'green'}}></View>
+              <Text style={{}}>{item}</Text>
             </View>
-            {/* middle text */}
-            <Text
-              style={{
-                width: '60%',
-                paddingVertical: 10,
-                fontSize: 16,
-              }}>
-              {item}
-            </Text>
-            {/* right circle  mainbox*/}
-            <View
-              style={{
-                width: '10%',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              {/* only circle */}
-              <View
-                style={{
-                  borderColor: 'green',
-                  borderRadius: '100%',
-                  borderWidth: 2,
-                  width: 15,
-                  height: 15,
-                }}></View>
-            </View>
-
-            {/* above closing tag main box map */}
+            <View style={{height:10, aspectRatio:1,borderWidth:1, borderColor:'green', borderRadius:'100%'}}></View>
           </View>
+          // <View style={styles.messageboxWrapper}>
+          //   <View style={styles.leftsquareBox}></View>
+          //   <Text style={styles.textmiddle}>{item}</Text>
+          //   <View style={styles.circleDotright}></View>
+          // </View>
         )}
       />
+
+      {/* end flat list map */}
 
       {/* this view control input and submit button */}
       <View style={styles.wrapInputboxButoon}>
@@ -110,7 +61,7 @@ const Work2Flatelist = () => {
         />
 
         <TouchableOpacity style={styles.submitbtn} onPress={allItemFunc}>
-          <Text style={{fontSize:20}}>X</Text>
+          <Text style={{fontSize: 20}}>X</Text>
         </TouchableOpacity>
       </View>
       {/* above close tag for submit and input box */}
@@ -123,10 +74,11 @@ const Work2Flatelist = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-evenly',
     alignItems: 'center',
     backgroundColor: '#dddddd',
-    position: 'relative',
+    // position: 'relative',
+    width: '100%',
+
   },
   h1: {
     color: '#333',
@@ -135,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 
-  // inputbox and submit button
+  //inputbox and submit button
   wrapInputboxButoon: {
     backgroundColor: 'pink',
     width: '100%',
@@ -143,6 +95,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    position: 'absolute',
+    bottom: 0,
   },
   inputbox: {
     borderColor: 'green',
@@ -165,14 +119,31 @@ const styles = StyleSheet.create({
   },
 
   // map box square box text and circle
-  messageboxWrapper: {
-    backgroundColor: 'green',
-    width: '90%',
+  // messageboxWrapper: {
+  //   backgroundColor: 'blue',
+  //   width: '100%',
+  //   flexDirection: 'row',
+  //   padding: 20,
+  // },
+  // leftsquareBox: {
+  //   backgroundColor: 'green',
+  //   borderRadius: '30%',
+  //   height: 20,
+  //   width: 20,
 
-  },
-  leftsquareBox: {},
+  // },
 
-  textmiddle: {},
-  circleDotright: {},
+  // textmiddle: {
+  //   width: '60%',
+  //   paddingVertical: 10,
+  //   fontSize: 16,
+  //   backgroundColor:'pink',
+  // },
+  // circleDotright: {
+  //   width: '10%',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   backgroundColor:'red',
+  // },
 });
 export default Work2Flatelist;
