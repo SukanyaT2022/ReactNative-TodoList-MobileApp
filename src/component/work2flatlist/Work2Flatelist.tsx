@@ -12,6 +12,7 @@ import {
 const Work2Flatelist = () => {
   const [textInput, setTextInput] = useState('');
   const [allItems, setAllItems] = useState<string[]>([]);
+  const [holdSearchText, setHoldSearchText] = useState('');
   // const inputFunc =(item:string)=>{
   // setTextInput(item)
   // }
@@ -24,22 +25,69 @@ const Work2Flatelist = () => {
     <View style={styles.container}>
       <Text style={styles.h1}>What will you do today? </Text>
 
+ {/* this view control input and submit button */}
+ <View style={{}}>
+        <TextInput
+          style={styles.inputbox}
+          value={textInput}
+          onChangeText={(text)=>{setHoldSearchText(text)}}
+          placeholder="search"
+        />
+
+        <TouchableOpacity style={{}} onPress={()=>{}}>
+          <Text style={{fontSize: 20}}>search</Text>
+        </TouchableOpacity>
+      </View>
+
+
+
+
+
+
       {/* start flatlist map section */}
 
       <FlatList
-      style={{width:'100%'}}
-      contentContainerStyle={{width:'100%'}}
+        style={{width: '100%'}}
+        contentContainerStyle={{width: '100%'}}
         data={allItems}
         keyExtractor={item => item}
         renderItem={({item}) => (
           // main mapbox
 
-          <View style={{flexDirection:'row', justifyContent:'space-between', marginTop: 10, alignItems:'center', marginHorizontal:20, backgroundColor:'white', padding:12, borderRadius:8}}>
-            <View style={{flexDirection:'row', gap:15, alignItems:'center'}}>
-              <View style={{height:20, aspectRatio:1, borderWidth:1, borderColor:'green'}}></View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 10,
+              alignItems: 'center',
+              marginHorizontal: 20,
+              backgroundColor: 'white',
+              padding: 12,
+              borderRadius: 8,
+            }}>
+            <View style={{flexDirection: 'row', gap: 15, alignItems: 'center'}}>
+              <View
+                style={{
+                  height: 20,
+                  aspectRatio: 1,
+                  borderWidth: 1,
+                  borderColor: 'green',
+                }}></View>
               <Text style={{}}>{item}</Text>
             </View>
-            <View style={{height:10, aspectRatio:1,borderWidth:1, borderColor:'green', borderRadius:'100%'}}></View>
+            <TouchableOpacity
+            onPress={()=>{
+              setAllItems(allItems.filter(data=>data!== item))
+            }}
+              style={{
+                height: 30,
+                aspectRatio: 1,
+                borderWidth: 1,
+                borderColor: 'green',
+                borderRadius: '100%',
+              }}>
+                <Text>X</Text>
+                </TouchableOpacity>
           </View>
           // <View style={styles.messageboxWrapper}>
           //   <View style={styles.leftsquareBox}></View>
@@ -50,6 +98,9 @@ const Work2Flatelist = () => {
       />
 
       {/* end flat list map */}
+
+
+
 
       {/* this view control input and submit button */}
       <View style={styles.wrapInputboxButoon}>
@@ -78,7 +129,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#dddddd',
     // position: 'relative',
     width: '100%',
-
   },
   h1: {
     color: '#333',

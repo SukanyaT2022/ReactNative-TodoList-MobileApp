@@ -25,14 +25,12 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Work2Flatelist from './src/component/work2flatlist/Work2Flatelist';
-
-
+import MyFlatlist from './src/component/myownFlatlist/MyFlatlist';
+import Todo4 from './src/component/Todo4Folder/Todo4';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
-
-
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -42,33 +40,34 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={{flex:1}}>
-  {/* <Todo/> */}
-  {/* <WorkFlatlist/> */}
-  <Work2Flatelist/>
-  
+    <SafeAreaView style={{flex: 1}}>
+
+      {/* <WorkFlatlist/> */}
+      {/* <Work2Flatelist /> */}
+      {/* <MyFlatlist/>  */}
+
+      <Todo4/>
     </SafeAreaView>
- 
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+// const styles = StyleSheet.create({
+//   sectionContainer: {
+//     marginTop: 32,
+//     paddingHorizontal: 24,
+//   },
+//   sectionTitle: {
+//     fontSize: 24,
+//     fontWeight: '600',
+//   },
+//   sectionDescription: {
+//     marginTop: 8,
+//     fontSize: 18,
+//     fontWeight: '400',
+//   },
+//   highlight: {
+//     fontWeight: '700',
+//   },
+// });
 
 export default App;
