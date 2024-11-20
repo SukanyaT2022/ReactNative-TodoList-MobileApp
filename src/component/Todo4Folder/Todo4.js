@@ -28,6 +28,7 @@ const Todo4 = () => {
           data={allItems}
           keyExtractor={item => item}
           renderItem={({item}) => (
+            
             <View
               style={{
                 width: '90%',
@@ -36,7 +37,6 @@ const Todo4 = () => {
                 borderRadius:30,
                 marginVertical:10,
                 margin:'auto'
-
               }}
               >
               {/* above main box */}
@@ -44,7 +44,22 @@ const Todo4 = () => {
               <Text>{item}</Text>
 
               {/* below close view tag  main box */}
+              <TouchableOpacity
+          style={{
+            width:20,
+            height:20,
+            backgroundColor:'red',
+          }}
+          onPress={()=>{
+            setAllItems(allItems.filter(takeout=>takeout !== item))
+          }}
+              >
+<Text>X</Text>
+              </TouchableOpacity>
             </View>
+            
+
+         
           )}
         />
       </View>

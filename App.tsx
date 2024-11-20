@@ -43,10 +43,9 @@ function App(): React.JSX.Element {
     <SafeAreaView style={{flex: 1}}>
 
       {/* <WorkFlatlist/> */}
-      {/* <Work2Flatelist /> */}
+      <Work2Flatelist />
       {/* <MyFlatlist/>  */}
-
-      <Todo4/>
+      {/* <Todo4/> */}
     </SafeAreaView>
   );
 }

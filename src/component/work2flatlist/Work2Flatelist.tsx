@@ -20,29 +20,35 @@ const Work2Flatelist = () => {
     setAllItems([...allItems, textInput]);
     setTextInput('');
   };
+  const searchTextFunc = () => {
+    if (holdSearchText) {
+      const searchResult = allItems.filter(item =>
+        item.toLowerCase().includes(holdSearchText.toLowerCase()),
+      );
+      setAllItems(searchResult);
+      setHoldSearchText('');
+    }
+  };
   return (
     // wrap whole screen this view
     <View style={styles.container}>
       <Text style={styles.h1}>What will you do today? </Text>
 
- {/* this view control input and submit button */}
- <View style={{}}>
+      {/* this view control input and submit button */}
+      <View style={{width: '100%'}}>
         <TextInput
           style={styles.inputbox}
-          value={textInput}
-          onChangeText={(text)=>{setHoldSearchText(text)}}
+          value={holdSearchText}
+          onChangeText={text => {
+            setHoldSearchText(text);
+          }}
           placeholder="search"
         />
 
-        <TouchableOpacity style={{}} onPress={()=>{}}>
+        <TouchableOpacity style={{}} onPress={searchTextFunc}>
           <Text style={{fontSize: 20}}>search</Text>
         </TouchableOpacity>
       </View>
-
-
-
-
-
 
       {/* start flatlist map section */}
 
@@ -76,9 +82,14 @@ const Work2Flatelist = () => {
               <Text style={{}}>{item}</Text>
             </View>
             <TouchableOpacity
-            onPress={()=>{
-              setAllItems(allItems.filter(data=>data!== item))
-            }}
+              onPress={() => {
+                setAllItems(
+                  allItems.filter(data => {
+                    return data !== item;
+                  }),
+                );
+                // setAllItems(allItems.filter(data=>data!== item)
+              }}
               style={{
                 height: 30,
                 aspectRatio: 1,
@@ -86,8 +97,8 @@ const Work2Flatelist = () => {
                 borderColor: 'green',
                 borderRadius: '100%',
               }}>
-                <Text>X</Text>
-                </TouchableOpacity>
+              <Text>X</Text>
+            </TouchableOpacity>
           </View>
           // <View style={styles.messageboxWrapper}>
           //   <View style={styles.leftsquareBox}></View>
@@ -98,9 +109,6 @@ const Work2Flatelist = () => {
       />
 
       {/* end flat list map */}
-
-
-
 
       {/* this view control input and submit button */}
       <View style={styles.wrapInputboxButoon}>
