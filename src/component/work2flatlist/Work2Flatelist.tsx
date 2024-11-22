@@ -6,26 +6,82 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from 'react-native';
 // import { styles } from './WorksFlatList_styles';
 
+interface ActivityItem {
+  id: string;
+  activity: string;
+  priority: number;
+}
+
 const Work2Flatelist = () => {
   const [textInput, setTextInput] = useState('');
-  const [allItems, setAllItems] = useState<string[]>([]);
+  // const [allItems, setAllItems] = useState<string[]>([]);
+  // console.log('These are my string items', allItems)
   const [holdSearchText, setHoldSearchText] = useState('');
+
+  let [listOfActivities, setListOfActivities] = useState<ActivityItem[]>([
+    {id: '1', activity: 'Washing my dresses', priority: 1},
+    {id: '2', activity: 'Eating dinner', priority: 3},
+    {id: '3', activity: 'Brushing teeth', priority: 2},
+    {id: '4', activity: 'Reading', priority: 1},
+    {id: '5', activity: 'Walking the dog', priority: 3},
+    {id: '6', activity: 'Gardening', priority: 2},
+    {id: '7', activity: 'Cleaning the kitchen', priority: 1},
+    {id: '8', activity: 'Mowing lawns', priority: 3},
+    {id: '9', activity: 'Playing soccer', priority: 2},
+    {id: '10', activity: 'Swimming', priority: 1},
+  ]);
+
+console.log('These are my objects activities', listOfActivities);
+
+  // if use filter we need condition if else -- if use include no need for condition--we use for search box- that is the  difference
+
+  //ex1.good for filter - all letter need to be match use for filter
+  // const results = ourNames.filter(name => {
+  //   return name.toLowerCase() === searchText.toLowerCase();
+  // });
+
+
+  // // ex2. good for search -- no need to match all letter, just some it will show
+  // const searchResults = ourNames.filter(name => {
+  //   return name.toLowerCase().includes(searchText.toLowerCase());
+  // });
+
   // const inputFunc =(item:string)=>{
   // setTextInput(item)
   // }
+
+  // submit text button to update all items
   const allItemFunc = () => {
-    setAllItems([...allItems, textInput]);
+    // if no text on inputText !textInput
+    if (!textInput) {
+      Alert.alert('Please enter an activity!');
+      return;
+    }
+    if (textInput) {
+      // const checkRepeat = allItems.some(
+      //   item => item.toLowerCase() === textInput.toLowerCase(),
+      // );
+      // if (checkRepeat) {
+      //   Alert.alert(`${textInput} already exists`);
+      //   setTextInput('');
+      //   return;
+      // }
+    }
+    // setAllItems([...allItems, textInput]);
     setTextInput('');
   };
+
+  // fiter from inputbox
   const searchTextFunc = () => {
     if (holdSearchText) {
-      const searchResult = allItems.filter(item =>
-        item.toLowerCase().includes(holdSearchText.toLowerCase()),
-      );
-      setAllItems(searchResult);
+      // const searchResult = allItems.filter(item =>
+      //   item.toLowerCase().includes(holdSearchText.toLowerCase()),
+      // );
+      // setAllItems(searchResult);
       setHoldSearchText('');
     }
   };
@@ -55,8 +111,8 @@ const Work2Flatelist = () => {
       <FlatList
         style={{width: '100%'}}
         contentContainerStyle={{width: '100%'}}
-        data={allItems}
-        keyExtractor={item => item}
+        data={listOfActivities}
+        keyExtractor={item => item.id}
         renderItem={({item}) => (
           // main mapbox
 
@@ -77,17 +133,18 @@ const Work2Flatelist = () => {
                   height: 20,
                   aspectRatio: 1,
                   borderWidth: 1,
-                  borderColor: 'green',
-                }}></View>
-              <Text style={{}}>{item}</Text>
+                  borderColor: item.priority === 1 ? 'red': item.priority ===2 ? 'orange' : 'green',
+                }}/>
+              <Text style={{}}>{item.activity}</Text>
             </View>
             <TouchableOpacity
               onPress={() => {
-                setAllItems(
-                  allItems.filter(data => {
-                    return data !== item;
-                  }),
-                );
+                setListOfActivities(listOfActivities.filter(activity => activity.id != item.id))
+                // setAllItems(
+                //   allItems.filter(data => {
+                //     return data !== item;
+                //   }),
+                // );
                 // setAllItems(allItems.filter(data=>data!== item)
               }}
               style={{

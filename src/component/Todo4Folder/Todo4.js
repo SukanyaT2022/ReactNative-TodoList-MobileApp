@@ -17,49 +17,47 @@ const Todo4 = () => {
     setSingleTextInput('');
   };
 
+  const filterTextFunc =()=>{
+    
+  }
+
   return (
     <View style={styles.container}>
       <Text style={todoStyle.header}>Test</Text>
 
-      <View style={{width:'100%',  }}>
+      <View style={{width: '100%'}}>
         <FlatList
           style={{width: '100%'}}
           contentContainerStyle={{width: '100%'}}
           data={allItems}
           keyExtractor={item => item}
           renderItem={({item}) => (
-            
             <View
               style={{
                 width: '90%',
                 backgroundColor: 'green',
-                padding:10,
-                borderRadius:30,
-                marginVertical:10,
-                margin:'auto'
-              }}
-              >
+                padding: 10,
+                borderRadius: 30,
+                marginVertical: 10,
+                margin: 'auto',
+              }}>
               {/* above main box */}
 
               <Text>{item}</Text>
 
               {/* below close view tag  main box */}
               <TouchableOpacity
-          style={{
-            width:20,
-            height:20,
-            backgroundColor:'red',
-          }}
-          onPress={()=>{
-            setAllItems(allItems.filter(takeout=>takeout !== item))
-          }}
-              >
-<Text>X</Text>
+                style={{
+                  width: 20,
+                  height: 20,
+                  backgroundColor: 'red',
+                }}
+                onPress={() => {
+                  setAllItems(allItems.filter(takeout => takeout !== item));
+                }}>
+                <Text>X</Text>
               </TouchableOpacity>
             </View>
-            
-
-         
           )}
         />
       </View>
