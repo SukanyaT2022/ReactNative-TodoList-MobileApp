@@ -13,7 +13,7 @@ import {
 const Mytodo5 = () => {
   return (
     <View style={styles.container}>
-      <Text>Test todo 5</Text>
+      <Text>To Do List</Text>
 
       <View></View>
 
@@ -23,27 +23,30 @@ const Mytodo5 = () => {
 
       <View style={styles.wrapInputBoxBtn}>
         <TextInput style={styles.inputBox} placeholder="Type your todo here" />
-        <TouchableOpacity style={styles.submitBtn} />
+
+        <TouchableOpacity style={styles.submitBtn}>
+          <Text style={styles.submitBtnPlus}>+</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+
     backgroundColor: 'lightgray',
     flex: 1,
     position: 'relative',
   },
   wrapInputBoxBtn: {
     position: 'absolute',
-    bottom: 0,
-    left:15,
+    bottom: 20,
     width: '100%',
     flexDirection: 'row',
-justifyContent:"space-between",
+    justifyContent: 'space-between',
+    margin:'auto',
+    paddingHorizontal:10,
 
-  
   },
   inputBox: {
     fontSize: 16,
@@ -60,6 +63,12 @@ justifyContent:"space-between",
     height: 60,
     backgroundColor: 'lightgreen',
     borderRadius: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  submitBtnPlus: {
+    fontSize: 40,
+    fontWeight: 'bold',
   },
 });
 export default Mytodo5;
