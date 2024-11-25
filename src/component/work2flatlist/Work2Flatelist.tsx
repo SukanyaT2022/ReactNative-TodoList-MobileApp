@@ -32,7 +32,7 @@ const Work2Flatelist = () => {
     {id: '7', activity: 'Cleaning the kitchen', priority: 1},
     {id: '8', activity: 'Mowing lawns', priority: 3},
     {id: '9', activity: 'Playing soccer', priority: 2},
-    {id: '10', activity: 'Swimming', priority: 1},
+    {id: '10', activity: 'Swimming', priority: 1, },
   ]);
 
 console.log('These are my objects activities', listOfActivities);
@@ -85,6 +85,16 @@ console.log('These are my objects activities', listOfActivities);
       setHoldSearchText('');
     }
   };
+
+
+  //important less important func
+  const handleImportantFunc=(item:ActivityItem)=>{
+console.log("This is item" + JSON.stringify(item))
+if (item.priority == 1){
+  Alert.alert(`${item.activity} is of Importance`)
+}
+
+  }
   return (
     // wrap whole screen this view
     <View style={styles.container}>
@@ -128,13 +138,17 @@ console.log('These are my objects activities', listOfActivities);
               borderRadius: 8,
             }}>
             <View style={{flexDirection: 'row', gap: 15, alignItems: 'center'}}>
-              <View
+              <TouchableOpacity
                 style={{
                   height: 20,
                   aspectRatio: 1,
                   borderWidth: 1,
                   borderColor: item.priority === 1 ? 'red': item.priority ===2 ? 'orange' : 'green',
-                }}/>
+                
+                }}
+                onPress={()=>handleImportantFunc(item)}
+                
+                />
               <Text style={{}}>{item.activity}</Text>
             </View>
             <TouchableOpacity
