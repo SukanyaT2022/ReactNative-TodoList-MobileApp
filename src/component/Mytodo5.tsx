@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  FlatList,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -11,18 +12,42 @@ import {
   View,
 } from 'react-native';
 const Mytodo5 = () => {
+  const [inputText, setInputText] = useState('');
+  const [alltodo, setAlltodo] = useState([])
+
   return (
     <View style={styles.container}>
       <Text>To Do List</Text>
 
       <View></View>
 
-      {/* <View>
-    
-</View> */}
+      <View>
+   <FlatList
+   style={{}}
+   contentContainerStyle={{width:'100%'}}
+   data={alltodo}
+   keyExtractor={item=>item}
+   renderItem={({item})=>(
+
+<View>
+
+
+</View>
+
+   )
+   }
+   
+   
+   />
+</View>
 
       <View style={styles.wrapInputBoxBtn}>
-        <TextInput style={styles.inputBox} placeholder="Type your todo here" />
+        <TextInput
+          style={styles.inputBox}
+          placeholder="Type your todo here"
+          value={inputText}
+          onChangeText={item => setInputText(item)}
+        />
 
         <TouchableOpacity style={styles.submitBtn}>
           <Text style={styles.submitBtnPlus}>+</Text>
@@ -33,7 +58,6 @@ const Mytodo5 = () => {
 };
 const styles = StyleSheet.create({
   container: {
-
     backgroundColor: 'lightgray',
     flex: 1,
     position: 'relative',
@@ -44,9 +68,8 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin:'auto',
-    paddingHorizontal:10,
-
+    margin: 'auto',
+    paddingHorizontal: 10,
   },
   inputBox: {
     fontSize: 16,
