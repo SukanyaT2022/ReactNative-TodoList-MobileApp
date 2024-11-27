@@ -28,6 +28,7 @@ import Work2Flatelist from './src/component/work2flatlist/Work2Flatelist';
 import MyFlatlist from './src/component/myownFlatlist/MyFlatlist';
 import Todo4 from './src/component/Todo4Folder/Todo4';
 import Mytodo5 from './src/component/Mytodo5';
+import BasicJs from './src/BasicJs';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -47,7 +48,9 @@ function App(): React.JSX.Element {
       {/* <Work2Flatelist /> */}
       {/* <MyFlatlist/>  */}
       {/* <Todo4/> */}
-      <Mytodo5/>
+      {/* <Mytodo5/> */}
+      <BasicJs/>
+
     </SafeAreaView>
   );
 }

@@ -14,7 +14,10 @@ import {
 const Mytodo5 = () => {
   const [inputText, setInputText] = useState('');
   const [alltodo, setAlltodo] = useState([])
-
+const holdAllItemFunc=()=>{
+  setAlltodo([...alltodo,inputText]);
+  setInputText('')
+}
   return (
     <View style={styles.container}>
       <Text>To Do List</Text>
@@ -23,15 +26,26 @@ const Mytodo5 = () => {
 
       <View>
    <FlatList
-   style={{}}
+   style={{width:'100%'}}
    contentContainerStyle={{width:'100%'}}
    data={alltodo}
    keyExtractor={item=>item}
    renderItem={({item})=>(
 
-<View>
+<View
+style={{
+width:'90%',
+backgroundColor:'green',
 
 
+
+
+}}
+
+
+>
+
+<Text>{item}</Text>
 </View>
 
    )
@@ -49,7 +63,10 @@ const Mytodo5 = () => {
           onChangeText={item => setInputText(item)}
         />
 
-        <TouchableOpacity style={styles.submitBtn}>
+        <TouchableOpacity 
+        style={styles.submitBtn}
+        onPress={holdAllItemFunc}
+        >
           <Text style={styles.submitBtnPlus}>+</Text>
         </TouchableOpacity>
       </View>
