@@ -18,26 +18,42 @@ interface ActivityItem {
 
 const Work2Flatelist = () => {
   const [textInput, setTextInput] = useState('');
+  // const [allItems, setAllItems] = useState<string[]>([]);
+  // console.log('These are my string items', allItems)
   const [holdSearchText, setHoldSearchText] = useState('');
-  const [textInputID, setTextInputID] = useState('');
-  const [textInputPriority, setTextInputPriority] = useState('');
 
   let [listOfActivities, setListOfActivities] = useState<ActivityItem[]>([
-    // {id: '1', activity: 'Washing my dresses', priority: 1},
-    // {id: '2', activity: 'Eating dinner', priority: 3},
-    // {id: '3', activity: 'Brushing teeth', priority: 2},
-    // {id: '4', activity: 'Reading', priority: 1},
-    // {id: '5', activity: 'Walking the dog', priority: 3},
-    // {id: '6', activity: 'Gardening', priority: 2},
-    // {id: '7', activity: 'Cleaning the kitchen', priority: 1},
-    // {id: '8', activity: 'Mowing lawns', priority: 3},
-    // {id: '9', activity: 'Playing soccer', priority: 2},
-    // {id: '10', activity: 'Swimming', priority: 1, },
+    {id: '1', activity: 'Washing my dresses', priority: 1},
+    {id: '2', activity: 'Eating dinner', priority: 3},
+    {id: '3', activity: 'Brushing teeth', priority: 2},
+    {id: '4', activity: 'Reading', priority: 1},
+    {id: '5', activity: 'Walking the dog', priority: 3},
+    {id: '6', activity: 'Gardening', priority: 2},
+    {id: '7', activity: 'Cleaning the kitchen', priority: 1},
+    {id: '8', activity: 'Mowing lawns', priority: 3},
+    {id: '9', activity: 'Playing soccer', priority: 2},
+    {id: '10', activity: 'Swimming', priority: 1, },
   ]);
 
 console.log('These are my objects activities', listOfActivities);
 
-  
+  // if use filter we need condition if else -- if use include no need for condition--we use for search box- that is the  difference
+
+  //ex1.good for filter - all letter need to be match use for filter
+  // const results = ourNames.filter(name => {
+  //   return name.toLowerCase() === searchText.toLowerCase();
+  // });
+
+
+  // // ex2. good for search -- no need to match all letter, just some it will show
+  // const searchResults = ourNames.filter(name => {
+  //   return name.toLowerCase().includes(searchText.toLowerCase());
+  // });
+
+  // const inputFunc =(item:string)=>{
+  // setTextInput(item)
+  // }
+
   // submit text button to update all items
   const allItemFunc = () => {
     // if no text on inputText !textInput
@@ -46,16 +62,26 @@ console.log('These are my objects activities', listOfActivities);
       return;
     }
     if (textInput) {
-    
+      // const checkRepeat = allItems.some(
+      //   item => item.toLowerCase() === textInput.toLowerCase(),
+      // );
+      // if (checkRepeat) {
+      //   Alert.alert(`${textInput} already exists`);
+      //   setTextInput('');
+      //   return;
+      // }
     }
-    
+    // setAllItems([...allItems, textInput]);
     setTextInput('');
   };
 
   // fiter from inputbox
   const searchTextFunc = () => {
     if (holdSearchText) {
-    
+      // const searchResult = allItems.filter(item =>
+      //   item.toLowerCase().includes(holdSearchText.toLowerCase()),
+      // );
+      // setAllItems(searchResult);
       setHoldSearchText('');
     }
   };
@@ -96,7 +122,7 @@ if (item.priority == 1){
         style={{width: '100%'}}
         contentContainerStyle={{width: '100%'}}
         data={listOfActivities}
-        keyExtractor={item => item.id}//line 25 to 3 is item
+        keyExtractor={item => item.id}
         renderItem={({item}) => (
           // main mapbox
 
@@ -128,7 +154,12 @@ if (item.priority == 1){
             <TouchableOpacity
               onPress={() => {
                 setListOfActivities(listOfActivities.filter(activity => activity.id != item.id))
-               
+                // setAllItems(
+                //   allItems.filter(data => {
+                //     return data !== item;
+                //   }),
+                // );
+                // setAllItems(allItems.filter(data=>data!== item)
               }}
               style={{
                 height: 30,
@@ -140,7 +171,11 @@ if (item.priority == 1){
               <Text>X</Text>
             </TouchableOpacity>
           </View>
-          
+          // <View style={styles.messageboxWrapper}>
+          //   <View style={styles.leftsquareBox}></View>
+          //   <Text style={styles.textmiddle}>{item}</Text>
+          //   <View style={styles.circleDotright}></View>
+          // </View>
         )}
       />
 
@@ -153,12 +188,6 @@ if (item.priority == 1){
           value={textInput}
           onChangeText={item => setTextInput(item)}
           placeholder="Enter your task here"
-        />
-         <TextInput
-          style={styles.inputboxID}
-          value={textInputID}
-          onChangeText={item => setTextInput(item)}
-          placeholder="Enter ID"
         />
 
         <TouchableOpacity style={styles.submitbtn} onPress={allItemFunc}>
@@ -218,6 +247,32 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  
+  // map box square box text and circle
+  // messageboxWrapper: {
+  //   backgroundColor: 'blue',
+  //   width: '100%',
+  //   flexDirection: 'row',
+  //   padding: 20,
+  // },
+  // leftsquareBox: {
+  //   backgroundColor: 'green',
+  //   borderRadius: '30%',
+  //   height: 20,
+  //   width: 20,
+
+  // },
+
+  // textmiddle: {
+  //   width: '60%',
+  //   paddingVertical: 10,
+  //   fontSize: 16,
+  //   backgroundColor:'pink',
+  // },
+  // circleDotright: {
+  //   width: '10%',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   backgroundColor:'red',
+  // },
 });
 export default Work2Flatelist;

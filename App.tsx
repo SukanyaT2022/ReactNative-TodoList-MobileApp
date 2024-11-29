@@ -45,11 +45,11 @@ function App(): React.JSX.Element {
     <SafeAreaView style={{flex: 1}}>
 
       {/* <WorkFlatlist/> */}
-      {/* <Work2Flatelist /> */}
+      <Work2Flatelist />
       {/* <MyFlatlist/>  */}
       {/* <Todo4/> */}
       {/* <Mytodo5/> */}
-      <BasicJs/>
+      {/* <BasicJs/> */}
 
     </SafeAreaView>
   );
