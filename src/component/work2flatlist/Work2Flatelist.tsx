@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   StyleSheet,
   FlatList,
@@ -14,30 +15,24 @@ interface ActivityItem {
   id: string;
   activity: string;
   priority: number;
+
 }
 
 const Work2Flatelist = () => {
   const [textInput, setTextInput] = useState('');
-  const [holdSearchText, setHoldSearchText] = useState('');
-  const [textInputID, setTextInputID] = useState('');
-  const [textInputPriority, setTextInputPriority] = useState('');
+
+  const [rocketstatus, setRocketSataus] = useState(false);
+
+  // const [allItem, setAllItem] = useState([])
 
   let [listOfActivities, setListOfActivities] = useState<ActivityItem[]>([
-    // {id: '1', activity: 'Washing my dresses', priority: 1},
-    // {id: '2', activity: 'Eating dinner', priority: 3},
-    // {id: '3', activity: 'Brushing teeth', priority: 2},
-    // {id: '4', activity: 'Reading', priority: 1},
-    // {id: '5', activity: 'Walking the dog', priority: 3},
-    // {id: '6', activity: 'Gardening', priority: 2},
-    // {id: '7', activity: 'Cleaning the kitchen', priority: 1},
-    // {id: '8', activity: 'Mowing lawns', priority: 3},
-    // {id: '9', activity: 'Playing soccer', priority: 2},
-    // {id: '10', activity: 'Swimming', priority: 1, },
+    {id: '1', activity: 'Washing my dresses', priority: 1},
+
   ]);
 
-console.log('These are my objects activities', listOfActivities);
+  console.log('These are my objects activities', listOfActivities);
 
-  
+
   // submit text button to update all items
   const allItemFunc = () => {
     // if no text on inputText !textInput
@@ -46,58 +41,62 @@ console.log('These are my objects activities', listOfActivities);
       return;
     }
     if (textInput) {
-    
+
     }
-    
+
     setTextInput('');
   };
 
   // fiter from inputbox
-  const searchTextFunc = () => {
-    if (holdSearchText) {
-    
-      setHoldSearchText('');
-    }
-  };
+  // const searchTextFunc = () => {
+  //   if (holdSearchText) {
+  //     setHoldSearchText('');
+  //   }
+  // };
 
 
   //important less important func
-  const handleImportantFunc=(item:ActivityItem)=>{
-console.log("This is item" + JSON.stringify(item))
-if (item.priority == 1){
-  Alert.alert(`${item.activity} is of Importance`)
-}
+  const handleImportantFunc = (item: ActivityItem) => {
+    console.log("This is item" + JSON.stringify(item))
+    if (item.priority == 1) {
+      Alert.alert(`${item.activity} is of Importance`)
+    }
 
   }
+const addrocketFunc =(id)=>{
+  setRocketSataus(!rocketstatus)
+}
+
+
   return (
     // wrap whole screen this view
     <View style={styles.container}>
       <Text style={styles.h1}>What will you do today? </Text>
 
       {/* this view control input and submit button */}
-      <View style={{width: '100%'}}>
-        <TextInput
+      <View style={{ width: '100%' }}>
+        {/* <TextInput
           style={styles.inputbox}
           value={holdSearchText}
           onChangeText={text => {
             setHoldSearchText(text);
           }}
           placeholder="search"
-        />
+        /> */}
 
-        <TouchableOpacity style={{}} onPress={searchTextFunc}>
-          <Text style={{fontSize: 20}}>search</Text>
-        </TouchableOpacity>
+        {/* <TouchableOpacity style={{}} onPress={searchTextFunc}>
+          <Text style={{ fontSize: 20 }}>search</Text>
+        </TouchableOpacity> */}
       </View>
 
       {/* start flatlist map section */}
 
       <FlatList
-        style={{width: '100%'}}
-        contentContainerStyle={{width: '100%'}}
+        style={{ width: '100%' }}
+        contentContainerStyle={{ width: '100%' }}
         data={listOfActivities}
         keyExtractor={item => item.id}//line 25 to 3 is item
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           // main mapbox
 
           <View
@@ -111,25 +110,29 @@ if (item.priority == 1){
               padding: 12,
               borderRadius: 8,
             }}>
-            <View style={{flexDirection: 'row', gap: 15, alignItems: 'center'}}>
+            <View style={{ flexDirection: 'row', gap: 15, alignItems: 'center' }}>
               <TouchableOpacity
                 style={{
                   height: 20,
                   aspectRatio: 1,
                   borderWidth: 1,
-                  borderColor: item.priority === 1 ? 'red': item.priority ===2 ? 'orange' : 'green',
-                
+                  borderColor: item.priority === 1 ? 'red' : item.priority === 2 ? 'orange' : 'green',
+
                 }}
-                onPress={()=>handleImportantFunc(item)}
-                
-                />
+                onPress={() => handleImportantFunc(item)}
+
+              />
               <Text style={{}}>{item.activity}</Text>
             </View>
+            
             <TouchableOpacity
-              onPress={() => {
-                setListOfActivities(listOfActivities.filter(activity => activity.id != item.id))
-               
-              }}
+              onPress={
+
+           
+                () => {setListOfActivities(listOfActivities.filter(activity => activity.id != item.id))}
+
+
+              }
               style={{
                 height: 30,
                 aspectRatio: 1,
@@ -139,8 +142,9 @@ if (item.priority == 1){
               }}>
               <Text>X</Text>
             </TouchableOpacity>
+            <Icon name="rocket" size={30} color={rocketstatus?"red":"green"} onPress={()=>addrocketFunc(item.id)} />
           </View>
-          
+
         )}
       />
 
@@ -154,15 +158,10 @@ if (item.priority == 1){
           onChangeText={item => setTextInput(item)}
           placeholder="Enter your task here"
         />
-         <TextInput
-          style={styles.inputboxID}
-          value={textInputID}
-          onChangeText={item => setTextInput(item)}
-          placeholder="Enter ID"
-        />
+
 
         <TouchableOpacity style={styles.submitbtn} onPress={allItemFunc}>
-          <Text style={{fontSize: 20}}>X</Text>
+          <Text style={{ fontSize: 20 }}>X</Text>
         </TouchableOpacity>
       </View>
       {/* above close tag for submit and input box */}
@@ -218,6 +217,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  
+
 });
 export default Work2Flatelist;
+
+// {id: '2', activity: 'Eating dinner', priority: 3},
+// {id: '3', activity: 'Brushing teeth', priority: 2},
+// {id: '4', activity: 'Reading', priority: 1},
+// {id: '5', activity: 'Walking the dog', priority: 3},
+// {id: '6', activity: 'Gardening', priority: 2},
+// {id: '7', activity: 'Cleaning the kitchen', priority: 1},
+// {id: '8', activity: 'Mowing lawns', priority: 3},
+// {id: '9', activity: 'Playing soccer', priority: 2},
+// {id: '10', activity: 'Swimming', priority: 1, },
+
+
+// const [holdSearchText, setHoldSearchText] = useState('');
+// const [textInputID, setTextInputID] = useState('');
+// const [textInputPriority, setTextInputPriority] = useState('');
