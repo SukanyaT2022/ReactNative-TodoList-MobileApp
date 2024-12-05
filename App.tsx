@@ -30,6 +30,7 @@ import Todo4 from './src/component/Todo4Folder/Todo4';
 import Mytodo5 from './src/component/Mytodo5';
 import BasicJs from './src/BasicJs';
 import Newtodo5 from './src/component/Newtodo5';
+import TodoObj from './src/component/TodoObj';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -50,7 +51,8 @@ function App(): React.JSX.Element {
       {/* <Todo4/> */}
       {/* <Mytodo5/> */}
       {/* <BasicJs/> */}
-      <Newtodo5 />
+      {/* <Newtodo5 /> */}
+      <TodoObj/>
     </SafeAreaView>
   );
 }

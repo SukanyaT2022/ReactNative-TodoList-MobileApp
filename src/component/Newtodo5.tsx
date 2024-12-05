@@ -14,8 +14,17 @@ const Newtodo5 = () => {
     const [allItems, setAllItems] = useState<string[]>([])
 
     const addFunc=()=>{
+//         if(inputItem == ""){
+// return;
+//         }
+if (!inputItem.trim()) return;
+
       setAllItems([...allItems,inputItem])
       setInputItem('')
+    }
+    const removeFunc =(removeItem:string)=>{
+       const updateItem = allItems.filter(item=>item != removeItem) 
+       setAllItems(updateItem)
     }
   return (
     <View>
@@ -38,17 +47,12 @@ keyExtractor={(item)=>item}
 renderItem={({item})=>(
     <View>
     <Text>{item}</Text>
+    <TouchableOpacity onPress={()=>removeFunc(item)}><Text>Remove</Text></TouchableOpacity>
     </View>
-
 )}
-
-
-
 
 />
 </View>
-
-
 
 <View>
 <TextInput
