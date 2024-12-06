@@ -1,4 +1,5 @@
-
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { useState } from 'react';
 import {
     StyleSheet,
@@ -12,6 +13,11 @@ import {
 const TodoObj = () => {
     const [inputItem, setInputItem] = useState('')
     const [holdAllItems, setholdAllItems] = useState<any[]>([])
+    const [star, setStar]=useState(false)
+
+    const toggleStarFunc=()=>{
+      setStar(!star)
+    }
 
     const addFunc=()=>{
 if(inputItem !== ""){
@@ -41,7 +47,8 @@ onPress={()=>removeFunc(item)}
 ><Text>remove</Text>
 </TouchableOpacity>
 
-
+{/* const myIcon = <Icon name="rocket" size={30} color="#900" />; */}
+<Icon name="staro" size={30} color={star? "red": "green"} onPress={toggleStarFunc} />
 </View>
 
 )
