@@ -10,11 +10,11 @@ import {
     View,
     Alert,
   } from 'react-native';
-const TodoObj = () => {
+const Dec9TodoObj = () => {
     const [inputItem, setInputItem] = useState('')
     const [holdAllItems, setholdAllItems] = useState<any[]>([])
     const [star, setStar]=useState(false)
-
+    const [searchItem, setSearchItem] = useState('')
     const toggleStarFunc=()=>{
       setStar(!star)
     }
@@ -30,6 +30,17 @@ if(inputItem !== ""){
 const removeFunc=(removeItem:string)=>{
    const updateItems = holdAllItems.filter((item)=>item !== removeItem) 
    setholdAllItems(updateItems)
+}
+
+//search 
+
+const searchFunc =()=>{
+  if (searchItem){
+    const holdselectsearch = holdAllItems.filter((item)=>item == searchItem)
+setholdAllItems(holdselectsearch)
+setSearchItem('')
+  }
+
 }
   return (
     <View>
@@ -55,7 +66,6 @@ onPress={()=>removeFunc(item)}
 
 }
 
-
 />
 
 </View>
@@ -72,9 +82,22 @@ onPress={()=>removeFunc(item)}
     onPress={addFunc}
     ><Text>Add</Text>
     </TouchableOpacity>
+
+    <TextInput
+       style={{backgroundColor:'green'}} 
+       placeholder='search....'
+       onChangeText={(text)=>setSearchItem(text)}
+       value={searchItem}  
+       
+    />
+    <TouchableOpacity
+    onPress={searchFunc}
+    ><Text>search</Text>
+    </TouchableOpacity>
+    
 </View>
     </View>
   )
 }
 
-export default TodoObj
+export default Dec9TodoObj
