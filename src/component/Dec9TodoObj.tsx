@@ -25,8 +25,6 @@ if(inputItem !== ""){
     setInputItem('')
 }
     }
-
-
 const removeFunc=(removeItem:string)=>{
    const updateItems = holdAllItems.filter((item)=>item !== removeItem) 
    setholdAllItems(updateItems)
